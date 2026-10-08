@@ -153,17 +153,17 @@ Expected output:
   Starting BHTTP End-to-End Verification
 ============================================================
 [Test 1] GET /hello.txt (Expect 200 OK and exact file content)...
-  ✅ PASSED: 200 OK received with exact file body.
+  [PASS] 200 OK received with exact file body.
 [Test 2] GET /index.html (Expect 200 OK and HTML body)...
-  ✅ PASSED: HTML delivered accurately.
+  [PASS] HTML delivered accurately.
 [Test 3] GET /missing_file.txt (Expect 404 and exit non-zero)...
-  ✅ PASSED: Server returned 404, client exited with code 4 (non-zero as required).
+  [PASS] Server returned 404, client exited with code 4 (non-zero as required).
 [Test 4] Multi-file request over ONE single TCP connection...
-  ✅ PASSED: Both requests served over the SAME socket on streams 1 & 3.
+  [PASS] Both requests served over the SAME socket on streams 1 & 3.
 [Test 5] bcurl -v flag hexdumps every frame to stderr...
-  ✅ PASSED: Formatted frame headers and hex offsets verified in stderr.
+  [PASS] Formatted frame headers and hex offsets verified in stderr.
 [Test 6] Server 400 Bad Request on corrupted headers payload...
-  ✅ PASSED: Server returned 400 Bad Request for unparseable headers.
+  [PASS] Server returned 400 Bad Request for unparseable headers.
 ============================================================
   RESULTS: 6/6 Tests Passed Successfully!
 ============================================================

@@ -43,10 +43,10 @@ def main():
             text=True
         )
         if res.returncode == 0 and "Hello, Binary World!" in res.stdout:
-            print("  ✅ PASSED: 200 OK received with exact file body.")
+            print("  [PASS] 200 OK received with exact file body.")
             passed += 1
         else:
-            print(f"  ❌ FAILED: code={res.returncode}, stdout={res.stdout}, stderr={res.stderr}")
+            print(f"  [FAIL] code={res.returncode}, stdout={res.stdout}, stderr={res.stderr}")
 
         # TEST 2: GET HTML File
         total += 1
@@ -57,10 +57,10 @@ def main():
             text=True
         )
         if res.returncode == 0 and "<h1>Binary HTTP" in res.stdout:
-            print("  ✅ PASSED: HTML delivered accurately.")
+            print("  [PASS] HTML delivered accurately.")
             passed += 1
         else:
-            print(f"  ❌ FAILED: code={res.returncode}")
+            print(f"  [FAIL] code={res.returncode}")
 
         # TEST 3: 404 Not Found Handling
         total += 1
@@ -71,10 +71,10 @@ def main():
             text=True
         )
         if res.returncode != 0 and "404 Not Found" in res.stdout:
-            print(f"  ✅ PASSED: Server returned 404, client exited with code {res.returncode} (non-zero as required).")
+            print(f"  [PASS] Server returned 404, client exited with code {res.returncode} (non-zero as required).")
             passed += 1
         else:
-            print(f"  ❌ FAILED: Expected non-zero code, got {res.returncode}")
+            print(f"  [FAIL] Expected non-zero code, got {res.returncode}")
 
         # TEST 4: Single Connection Reuse (Persistent Keep-Alive)
         total += 1
@@ -85,10 +85,10 @@ def main():
             text=True
         )
         if "Stream: 1" in res.stderr and "Stream: 3" in res.stderr and res.returncode == 0:
-            print("  ✅ PASSED: Both requests served over the SAME socket on streams 1 & 3.")
+            print("  [PASS] Both requests served over the SAME socket on streams 1 & 3.")
             passed += 1
         else:
-            print(f"  ❌ FAILED: Multi-request persistent connection failed.")
+            print(f"  [FAIL] Multi-request persistent connection failed.")
 
         # TEST 5: Verbose Hexdump Output
         total += 1
@@ -99,10 +99,10 @@ def main():
             text=True
         )
         if "[FRAME SENT]" in res.stderr and "[FRAME RECV]" in res.stderr:
-            print("  ✅ PASSED: Formatted frame headers and hex offsets verified in stderr.")
+            print("  [PASS] Formatted frame headers and hex offsets verified in stderr.")
             passed += 1
         else:
-            print(f"  ❌ FAILED: Verbose hexdump missing.")
+            print(f"  [FAIL] Verbose hexdump missing.")
 
         # TEST 6: Malformed Frame / 400 Bad Request
         total += 1
@@ -116,10 +116,10 @@ def main():
         resp = raw_sock.recv(1024)
         raw_sock.close()
         if len(resp) > 0 and b"400" in resp:
-            print("  ✅ PASSED: Server returned 400 Bad Request for unparseable headers.")
+            print("  [PASS] Server returned 400 Bad Request for unparseable headers.")
             passed += 1
         else:
-            print(f"  ❌ FAILED: Unexpected response {resp}")
+            print(f"  [FAIL] Unexpected response {resp}")
 
     finally:
         server_proc.terminate()
